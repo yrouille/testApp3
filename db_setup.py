@@ -5,9 +5,14 @@ def init_db(db_path='data.db'):
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
 
+    c.execute('DROP TABLE IF EXISTS competitors')
     c.execute('DROP TABLE IF EXISTS competitor_news')
     c.execute('DROP TABLE IF EXISTS marketing_counts')
 
+    c.execute('''CREATE TABLE competitors (
+                    name TEXT PRIMARY KEY,
+                    marketing_url TEXT
+                )''')
     c.execute('''CREATE TABLE competitor_news (
                     competitor TEXT,
                     date TEXT,
@@ -18,6 +23,14 @@ def init_db(db_path='data.db'):
                     competitor TEXT PRIMARY KEY,
                     count INTEGER
                 )''')
+
+    with open('data/competitors.json') as f:
+        comp_data = json.load(f)
+    for name, url in comp_data.items():
+        c.execute(
+            'INSERT INTO competitors (name, marketing_url) VALUES (?, ?)',
+            (name, url)
+        )
 
     with open('data/competitor_news.json') as f:
         news_data = json.load(f)
