@@ -1,0 +1,35 @@
+{
+  "Algolia": [
+    {
+      "date": "2025-06-15",
+      "title": "Algolia new AI search features",
+      "summary": "Algolia launched an AI-driven search algorithm that boosts relevancy."
+    },
+    {
+      "date": "2025-06-01",
+      "title": "Algolia integrates with Shopify",
+      "summary": "New integration plugin for Shopify to help e-commerce stores."
+    }
+  ],
+  "Bloomreach": [
+    {
+      "date": "2025-06-10",
+      "title": "Bloomreach Content update 3.5",
+      "summary": "The update includes advanced personalization features."
+    }
+  ],
+  "Fredhopper": [
+    {
+      "date": "2025-06-05",
+      "title": "Fredhopper release 2.1",
+      "summary": "Improvements to search algorithms and new analytics dashboard."
+    }
+  ],
+  "XO": [
+    {
+      "date": "2025-05-20",
+      "title": "XO cross-channel personalization",
+      "summary": "Introduction of new machine learning models for recommendations."
+    }
+  ]
+}
