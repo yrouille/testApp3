@@ -1,0 +1,18 @@
+{
+  "name": "testapp3",
+  "version": "1.0.0",
+  "description": "This small Streamlit app provides a way to browse recent news about search and recommendation solutions that compete with Fredhopper and XO. Due to the environment having no internet access, the app uses static example data stored in JSON files. You can modify the `data` directory to include your own observations or integrate your own scraper.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "chart.js": "^4.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
