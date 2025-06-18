@@ -4,8 +4,8 @@ function App() {
   const [selected, setSelected] = React.useState('');
 
   React.useEffect(() => {
-    fetch('data/competitor_news.json').then(r => r.json()).then(setNewsData);
-    fetch('data/marketing_counts.json').then(r => r.json()).then(setMarketingData);
+    fetch('/api/news').then(r => r.json()).then(setNewsData);
+    fetch('/api/marketing').then(r => r.json()).then(setMarketingData);
   }, []);
 
   React.useEffect(() => {
