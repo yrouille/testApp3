@@ -26,6 +26,7 @@ can be imported into the database so the dashboard updates dynamically.
    ```
    Then open `http://localhost:8000/index.html` in your browser.
    The page expects the API to be reachable at `http://localhost:5000`.
+   This is configured in `src/app.jsx` via the `API_BASE` constant.
 
 The dashboard exposes two key features:
 
