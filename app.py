@@ -13,24 +13,22 @@ competitors = list(news_data.keys())
 
 st.title('Competitive Intelligence Dashboard')
 
-st.header('Latest News Across Competitors')
-for name, items in news_data.items():
+st.header('Latest News')
+selected = st.selectbox('Filter by competitor', ['All'] + competitors)
+
+def show_news(name, items):
     st.subheader(name)
     for item in items:
         st.write(f"{item['date']} - {item['title']}")
         st.write(item['summary'])
 
-st.header('Latest News for a Specific Competitor')
-selected = st.selectbox('Choose a competitor', competitors)
-
-if selected:
-    st.subheader(f'News for {selected}')
+if selected == 'All':
+    for name, items in news_data.items():
+        show_news(name, items)
+else:
     entries = news_data.get(selected, [])
-    summaries = []
-    for item in entries:
-        st.write(f"{item['date']} - {item['title']}")
-        st.write(item['summary'])
-        summaries.append(item['summary'])
+    show_news(selected, entries)
+    summaries = [item['summary'] for item in entries]
     if summaries:
         st.markdown('**Summary of highlighted features:**')
         for s in summaries:
