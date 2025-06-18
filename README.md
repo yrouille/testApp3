@@ -27,11 +27,10 @@ can be imported into the database so the dashboard updates dynamically.
    Then open `http://localhost:8000/index.html` in your browser.
    The page expects the API to be reachable at `http://localhost:5000`.
 
-The dashboard exposes three key features:
+The dashboard exposes two key features:
 
-1. **Latest News Across Competitors** – a list of updates for each solution.
-2. **Latest News for a Specific Competitor** – choose a competitor from the drop‑down to see its news and a summary of the highlighted features.
-3. **Marketing Communication Activity** – a bar chart comparing how frequently each solution communicates in marketing channels.
+1. **Latest News** – view updates across all competitors or filter the list to a single solution. When a competitor is selected, a summary of the highlighted features is shown.
+2. **Marketing Communication Activity** – a bar chart comparing how frequently each solution communicates in marketing channels.
 
 Feel free to modify or replace the `data/*.json` files to tailor the dashboard to your own research.
 

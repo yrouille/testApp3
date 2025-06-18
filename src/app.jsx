@@ -1,7 +1,7 @@
 function App() {
   const [newsData, setNewsData] = React.useState({});
   const [marketingData, setMarketingData] = React.useState({});
-  const [selected, setSelected] = React.useState('');
+  const [filter, setFilter] = React.useState('All');
 
   React.useEffect(() => {
     fetch('/api/news').then(r => r.json()).then(setNewsData);
@@ -30,15 +30,20 @@ function App() {
   }, [marketingData]);
 
   const competitors = Object.keys(newsData);
-  const selectedNews = selected ? (newsData[selected] || []) : [];
+  const selectedNews = filter !== 'All' ? (newsData[filter] || []) : [];
   const featureSummaries = selectedNews.map(item => item.summary);
 
   return (
     <div>
       <h1>Competitive Intelligence Dashboard</h1>
 
-      <h2>Latest News Across Competitors</h2>
-      {competitors.map(name => (
+      <h2>Latest News</h2>
+      <select value={filter} onChange={e => setFilter(e.target.value)}>
+        <option value="All">All</option>
+        {competitors.map(name => <option key={name} value={name}>{name}</option>)}
+      </select>
+
+      {(filter === 'All' ? competitors : [filter]).map(name => (
         <div key={name}>
           <h3>{name}</h3>
           {(newsData[name] || []).map((item, i) => (
@@ -50,21 +55,8 @@ function App() {
         </div>
       ))}
 
-      <h2>Latest News for a Specific Competitor</h2>
-      <select value={selected} onChange={e => setSelected(e.target.value)}>
-        <option value="">-- choose --</option>
-        {competitors.map(name => <option key={name} value={name}>{name}</option>)}
-      </select>
-
-      {selected && (
+      {filter !== 'All' && selectedNews.length > 0 && (
         <div>
-          <h3>News for {selected}</h3>
-          {selectedNews.map((item, i) => (
-            <div key={i}>
-              <strong>{item.date} - {item.title}</strong>
-              <p>{item.summary}</p>
-            </div>
-          ))}
           <h4>Summary of highlighted features:</h4>
           <ul>
             {featureSummaries.map((s, i) => <li key={i}>{s}</li>)}
