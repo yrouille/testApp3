@@ -1,11 +1,15 @@
 function App() {
   const [newsData, setNewsData] = React.useState({});
   const [marketingData, setMarketingData] = React.useState({});
+  const [competitorsList, setCompetitorsList] = React.useState([]);
+  const [newName, setNewName] = React.useState('');
+  const [newUrl, setNewUrl] = React.useState('');
   const [filter, setFilter] = React.useState('All');
 
   React.useEffect(() => {
     fetch('/api/news').then(r => r.json()).then(setNewsData);
     fetch('/api/marketing').then(r => r.json()).then(setMarketingData);
+    fetch('/api/competitors').then(r => r.json()).then(setCompetitorsList);
   }, []);
 
   React.useEffect(() => {
@@ -33,9 +37,39 @@ function App() {
   const selectedNews = filter !== 'All' ? (newsData[filter] || []) : [];
   const featureSummaries = selectedNews.map(item => item.summary);
 
+  function addCompetitor(e) {
+    e.preventDefault();
+    fetch('/api/competitors', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: newName, marketing_url: newUrl })
+    }).then(r => {
+      if (r.ok) {
+        setCompetitorsList([...competitorsList, { name: newName, marketing_url: newUrl }]);
+        setNewName('');
+        setNewUrl('');
+      }
+    });
+  }
+
   return (
     <div>
       <h1>Competitive Intelligence Dashboard</h1>
+
+      <h2>Competitors</h2>
+      <ul>
+        {competitorsList.map(c => (
+          <li key={c.name}>
+            <a href={c.marketing_url} target="_blank">{c.name}</a>
+          </li>
+        ))}
+      </ul>
+
+      <form onSubmit={addCompetitor} style={{ marginBottom: '20px' }}>
+        <input value={newName} onChange={e => setNewName(e.target.value)} placeholder="Name" required />
+        <input value={newUrl} onChange={e => setNewUrl(e.target.value)} placeholder="Marketing URL" required />
+        <button type="submit">Add</button>
+      </form>
 
       <h2>Latest News</h2>
       <select value={filter} onChange={e => setFilter(e.target.value)}>

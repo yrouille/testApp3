@@ -32,6 +32,8 @@ The dashboard exposes two key features:
 1. **Latest News** – view updates across all competitors or filter the list to a single solution. When a competitor is selected, a summary of the highlighted features is shown.
 2. **Marketing Communication Activity** – a bar chart comparing how frequently each solution communicates in marketing channels.
 
+The API also exposes basic endpoints to manage the list of competitors. Use `/api/competitors` (GET/POST) and `/api/competitors/<name>` (GET/PUT/DELETE) to add or update solutions along with a link to their marketing page. The front-end now lists these competitors and lets you add new ones.
+
 Feel free to modify or replace the `data/*.json` files to tailor the dashboard to your own research.
 
 ### Legacy Streamlit option
