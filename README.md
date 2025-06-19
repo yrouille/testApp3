@@ -2,9 +2,11 @@
 
 This project provides a lightweight dashboard for monitoring the latest news and marketing activity of solutions competing with Fredhopper.
 
-The interface is built in **React** and now relies on a small Flask API that
+The interface is built in **React** and relies on a small Flask API that
 serves data from an SQLite database. Sample JSON files in the `data/` directory
-can be imported into the database so the dashboard updates dynamically.
+can be imported into the database so the dashboard updates dynamically. The list
+of competitors you add in the UI is persisted in the browser via
+`localStorage` so it survives page reloads even without the database.
 
 ## Getting Started
 
@@ -32,7 +34,7 @@ The dashboard exposes two key features:
 1. **Latest News** – view updates across all competitors or filter the list to a single solution. When a competitor is selected, a summary of the highlighted features is shown.
 2. **Marketing Communication Activity** – a bar chart comparing how frequently each solution communicates in marketing channels.
 
-The API also exposes basic endpoints to manage the list of competitors. Use `/api/competitors` (GET/POST) and `/api/competitors/<name>` (GET/PUT/DELETE) to add or update solutions along with a link to their marketing page. The front-end now lists these competitors and lets you add new ones.
+The list of competitors is stored in your browser using `localStorage`. On first load it is seeded from `/api/competitors`, but subsequent changes are saved locally so you can add new solutions without running the database.
 
 Feel free to modify or replace the `data/*.json` files to tailor the dashboard to your own research.
 
