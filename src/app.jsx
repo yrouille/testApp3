@@ -11,7 +11,18 @@ function App() {
   React.useEffect(() => {
     fetch(`${API_BASE}/api/news`).then(r => r.json()).then(setNewsData);
     fetch(`${API_BASE}/api/marketing`).then(r => r.json()).then(setMarketingData);
-    fetch(`${API_BASE}/api/competitors`).then(r => r.json()).then(setCompetitorsList);
+
+    const stored = localStorage.getItem('competitors');
+    if (stored) {
+      setCompetitorsList(JSON.parse(stored));
+    } else {
+      fetch(`${API_BASE}/api/competitors`) 
+        .then(r => r.json())
+        .then(data => {
+          setCompetitorsList(data);
+          localStorage.setItem('competitors', JSON.stringify(data));
+        });
+    }
   }, []);
 
   React.useEffect(() => {
@@ -41,17 +52,11 @@ function App() {
 
   function addCompetitor(e) {
     e.preventDefault();
-    fetch(`${API_BASE}/api/competitors`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: newName, marketing_url: newUrl })
-    }).then(r => {
-      if (r.ok) {
-        setCompetitorsList([...competitorsList, { name: newName, marketing_url: newUrl }]);
-        setNewName('');
-        setNewUrl('');
-      }
-    });
+    const updated = [...competitorsList, { name: newName, marketing_url: newUrl }];
+    setCompetitorsList(updated);
+    localStorage.setItem('competitors', JSON.stringify(updated));
+    setNewName('');
+    setNewUrl('');
   }
 
   return (
