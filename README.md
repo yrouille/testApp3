@@ -1,6 +1,6 @@
 # Competitive Intelligence Dashboard
 
-This project provides a lightweight dashboard for monitoring the latest news and marketing activity of solutions competing with Fredhopper and XO.
+This project provides a lightweight dashboard for monitoring the latest news and marketing activity of solutions competing with Fredhopper.
 
 The interface is built in **React** and now relies on a small Flask API that
 serves data from an SQLite database. Sample JSON files in the `data/` directory
