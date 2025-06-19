@@ -6,10 +6,12 @@ function App() {
   const [newUrl, setNewUrl] = React.useState('');
   const [filter, setFilter] = React.useState('All');
 
+  const API_BASE = 'http://localhost:5000';
+
   React.useEffect(() => {
-    fetch('/api/news').then(r => r.json()).then(setNewsData);
-    fetch('/api/marketing').then(r => r.json()).then(setMarketingData);
-    fetch('/api/competitors').then(r => r.json()).then(setCompetitorsList);
+    fetch(`${API_BASE}/api/news`).then(r => r.json()).then(setNewsData);
+    fetch(`${API_BASE}/api/marketing`).then(r => r.json()).then(setMarketingData);
+    fetch(`${API_BASE}/api/competitors`).then(r => r.json()).then(setCompetitorsList);
   }, []);
 
   React.useEffect(() => {
@@ -39,7 +41,7 @@ function App() {
 
   function addCompetitor(e) {
     e.preventDefault();
-    fetch('/api/competitors', {
+    fetch(`${API_BASE}/api/competitors`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: newName, marketing_url: newUrl })
