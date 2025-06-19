@@ -24,12 +24,5 @@
       "title": "Fredhopper release 2.1",
       "summary": "Improvements to search algorithms and new analytics dashboard."
     }
-  ],
-  "XO": [
-    {
-      "date": "2025-05-20",
-      "title": "XO cross-channel personalization",
-      "summary": "Introduction of new machine learning models for recommendations."
-    }
   ]
 }
