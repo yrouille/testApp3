@@ -1,6 +1,7 @@
 {
   "Algolia": "https://www.algolia.com",
-  "Bloomreach": "https://www.bloomreach.com",
-  "Fredhopper": "https://www.fredhopper.com",
-  "XO": "https://www.xo.com"
+  "Algolia Blog": "https://www.algolia.com/blog",
+  "Algolia News": "https://www.algolia.com/about/news/",
+  "Bloomreach": "https://www.bloomreach.com/en/blog",
+  "Fredhopper": "https://www.fredhopper.com"
 }
